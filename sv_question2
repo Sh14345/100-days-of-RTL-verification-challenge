@@ -1,0 +1,47 @@
+class parent;
+  protected int a;
+  local int b;
+  int c;
+  local function display_local(input int a);
+    this.a=a;
+    $display("parent local a=%0d",this.a);
+  endfunction
+  protected function display_pro(input int b);
+    this.b=b;
+    $display("parent protected b=%0d",this.b);
+  endfunction
+  
+  function display_pub(input int c);
+  display_local(c);
+  display_pro(c);
+  this.c=c;
+  $display("parent public c=%0d",this.c);
+  endfunction
+  
+  function all_display();
+    $display("parent all global value display is a= %0d,b=%0d,c=%0d",a,b,c);
+  endfunction
+  
+endclass
+
+class child extends parent;
+  function child_display(input int a);
+    super.display_pro(a);
+    $display("child public c=%0d",a);
+  endfunction
+endclass
+
+module tb;
+  parent parent_h=new();
+  child child_h=new();
+  initial begin
+    parent_h.display_pub(6);
+    parent_h.c=91;
+    child_h.child_display(9);
+    parent_h.all_display();
+    child_h.child_display(5);
+    child_h.c=23;
+    child_h.child_display(41);
+    parent_h.all_display();
+  end
+endmodule
