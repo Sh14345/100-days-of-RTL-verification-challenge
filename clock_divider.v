@@ -1,6 +1,6 @@
     module clk_div_2n(rst, clk, en, div2, div4, div8, div16);
     input rst;
-input clk;
+    input clk;
     input en;
     output div2;
     output div4;
