@@ -2,10 +2,12 @@ class parent;
   protected int a;
   local int b;
   int c;
+  
   local function display_local(input int a);
     this.a=a;
     $display("parent local a=%0d",this.a);
   endfunction
+  
   protected function display_pro(input int b);
     this.b=b;
     $display("parent protected b=%0d",this.b);
